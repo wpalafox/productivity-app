@@ -5,9 +5,12 @@ export default function TodoForm(props) {
        <form>
            <input
              name='todo'
+             value={props.value}
              type='text'
+             onChange={props.inputChangeHandler}
              placeholder='enter a task' />
-          <button>Add a Task</button>
+          <button
+            onClick={props.addTask}>Add a Task</button>
           <button>Remove Completed</button>
         </form>
     )

@@ -13,19 +13,60 @@ export default class App extends Component {
 
     }], 
     todo: ''
-    
-
- 
-   }  
+    }  
   }
+
+/*Taking in an event as an argument, the input change 
+sets the name of the event target to the value of the 
+event target. Essentially taking in whatever typed and adding
+to the state */ 
+
+  inputChangeHandler = event => {
+    this.setState({[event.target.name]: event.target.value})
+  }
+  
+  addTask = event => {
+    event.preventDefault();
+    let newTask = {
+      task: this.state.todo,
+      id: Date.now(),
+      completed: false
+    };
+
+    this.setState({
+        todos: [...this.state.todos, newTask],
+        todo: ''
+    })
+  }
+
+  toggleComplete = itemID => {
+    const todos = this.state.todos.map(todo => {
+      if (todo.id === itemID) {
+        todo.completed = !todo.completed
+      }
+      return todo
+
+    });
+    this.setState({todos, todo: ''})
+}
+
+
+
+
   render() {
     return (
       <div className="App">
         <h1>To-Do List</h1>
         <TodoList
-          todos={this.state.todos}/> 
+          todos={this.state.todos}
+          toggleComplete={this.toggleComplete}/> 
         <TodoForm
-          todos={this.state.todos} />
+          todos={this.state.todos} 
+          value={this.state.todo}
+          inputChangeHandler={this.inputChangeHandler}
+          addTask={this.addTask}
+          
+          />
       </div>
         
     )
