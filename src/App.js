@@ -50,8 +50,16 @@ to the state */
     this.setState({todos, todo: ''})
 }
 
-
-
+removeItems = event => {
+  event.preventDefault();
+  this.setState(prevState => {
+    return {
+      todos: prevState.todos.filter(todo => {
+        return !todo.completed;
+      })
+    }
+  })
+}
 
   render() {
     return (
