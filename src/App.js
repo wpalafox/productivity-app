@@ -73,7 +73,7 @@ removeItems = event => {
           value={this.state.todo}
           inputChangeHandler={this.inputChangeHandler}
           addTask={this.addTask}
-          
+          removeItems={this.removeItems}
           />
       </div>
         
